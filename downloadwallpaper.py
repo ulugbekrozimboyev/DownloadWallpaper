@@ -80,7 +80,7 @@ class Wallpaper:
 
 # download big size image
 def download_bigimage(url):
-    # url = url.replace('/middle/', '/big/')
+    url = url.replace('/middle/', '/big/')
     l = url.split('/')
     img_name = l[len(l) - 1]
     path = './images/%s' % img_name
@@ -112,4 +112,4 @@ def download(catalog=''):
 
 
 if __name__ == '__main__':
-    download('/catalog/food')
+    download()
