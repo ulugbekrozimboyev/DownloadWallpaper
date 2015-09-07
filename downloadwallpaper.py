@@ -95,6 +95,7 @@ def download_bigimage(url):
         print 'error on download:%s' % e
 
 
+# download images from catalog
 def download(catalog=''):
     global PAGE_NUMBER
     current_page = 1
@@ -103,11 +104,13 @@ def download(catalog=''):
 
     while current_page <= PAGE_NUMBER:
         url_page = '%s%s/index-%s.html' % (URL, catalog, current_page)
-        print url_page
         wall = Wallpaper(url_page)
-        pool.map(download_bigimage, wall.get_image_urls())
-        current_page += 1
+        # get all image urls from web page
+        urls = wall.get_image_urls()
+        # download images parallel
+        pool.map(download_bigimage, urls)
 
+        current_page += 1
         time.sleep(5)
 
 
